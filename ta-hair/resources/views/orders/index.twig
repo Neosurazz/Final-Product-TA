@@ -1,0 +1,70 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Orders
+      </h1>
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List of Orders</h3>
+        </div>
+        <div class="box-body">
+		<table class="table table-bordered">
+                <tbody>
+                <tr>
+                  <th style="width: 100px">Order ID</th>
+                  <th>Customer</th>
+                  <th>Email</th>
+                  <th>Created At</th>
+                  <th>Updated At</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+                {% for order in orders %}
+                <tr>
+                  <form action="/orders/update/" method="get">
+                  <input type="hidden" value="{{ order.id}}" name="id">
+                  <td>{{ order.id }}</td>
+                  <td>{{ order.user.name }}</td>
+                  <td>{{ order.user.email}}</td>
+                  <td>{{ order.created_at }}</td>
+                  <td>{{ order.updated_at ?? 'N/A' }}</td>
+                  <td>
+                    <select name="status" class="status " id="status_{{ order.id }}" data-id="{{ order.id }}">
+                      <option value="">Select Status</option>
+                      {% for key,status in statuses %}
+                        <option value="{{ key }}" {% if key == order.status %}selected{% endif %} >{{ status }}</option>
+                      {% endfor %}
+                    </select>
+                  </td>
+                  <td>
+                    <a href="/orders/detail/{{ order.id }}" class="btn btn-xs btn-primary">
+                      <i class="fa fa-eye"></i>
+                    </a>
+                  </td>
+                  </form>
+                </tr>
+        		{% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <div class="box-footer">
+          Footer 
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}

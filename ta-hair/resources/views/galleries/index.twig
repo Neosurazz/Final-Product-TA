@@ -1,0 +1,51 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Gallery
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <p>
+        <a href="gallery/add" class="btn btn-primary">Add Gallery</a>
+      </p>
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List of Gallery</h3>
+        </div>
+        <div class="box-body">
+		          <table class="table table-bordered">
+                <tbody>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Title</th>
+                  <th>Action</th>
+                </tr>
+                {% for gallery in galleries %}
+                <tr>
+                  <td>{{ gallery.id }}</td>
+                  <td>{{ gallery.name }}</td>
+                  <td>
+                    <a href="/gallery/edit/{{ gallery.id }}" class="btn btn-primary">Edit</a>
+                    <a href="/gallery/delete/{{ gallery.id }}" class="btn btn-danger">Delete</a>
+                  </td>
+                </tr>
+        		    {% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <div class="box-footer">
+          Footer
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Services
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List of Services</h3>
+        </div>
+        
+        <form role="form" action="/services/{{ service ? 'update/' ~ service.id : 'save' }}" method="post" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" name="name" id="name" value="{{ service ? service.name : '' }}" required/>
+                </div>     
+                <div class="form-group">
+                  <label for="name">Price</label>
+                  <input type="text" class="form-control" name="price" id="price" value="{{ service ? service.price : '' }}" required/>
+                </div>     
+                <div class="form-group">
+                  <label for="name">Description</label>
+                  <input type="text" class="form-control" name="description" id="description" value="{{ service ? service.description : '' }}" required/>
+                </div>        
+                <div class="form-group">
+                  <label for="name">Duration</label>
+                  <input type="text" class="form-control" name="duration" id="duration" value="{{ service ? service.duration : '' }}" required/>
+                </div>                
+                <div class="form-group">
+                  <label for="service">Image</label>
+                  <input type="file" name="image" value=""/>
+                  {% if service.image != '' %}
+                    <img src="{{ service.image }}" alt="" style="width:100px;height:100px" />
+                  {% endif %}
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+
+        <div class="box-footer">
+          Footer
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}

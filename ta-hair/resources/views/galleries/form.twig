@@ -1,0 +1,51 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Gallery
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List of Gallery</h3>
+        </div>
+        
+        <form role="form" action="/gallery/{{ gallery ? 'update/' ~ gallery.id : 'save' }}" method="post" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" name="name" id="name" value="{{ gallery ? gallery.name : '' }}" required/>
+                </div>   
+                <div class="form-group">
+                  <label for="name">Description</label>
+                  <input type="text" class="form-control" name="description" id="description" value="{{ gallery ? gallery.description : '' }}" required/>
+                </div>                 
+                <div class="form-group">
+                  <label for="gallery">Image</label>
+                  <input type="file" name="image" value=""/>
+                  {% if gallery.image != '' %}
+                    <img src="{{ gallery.image }}" alt="" style="width:100px;height:100px" />
+                  {% endif %}
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+
+        <div class="box-footer">
+          Footer
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}

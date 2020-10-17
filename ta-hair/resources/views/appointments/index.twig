@@ -1,0 +1,62 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Appointments
+      </h1>
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List of Appointments</h3>
+        </div>
+        <div class="box-body">
+		<table class="table table-bordered">
+                <tbody>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Customer</th>
+                  <th>Email</th>
+                  <th>Service</th>
+                  <th>Created At</th>
+                  <th>Date</th>
+                </tr>
+                {% for appointment in appointments %}
+                <tr>
+                  <td>{{ appointment.id }}</td>
+                  {% if appointment.customer_id > 0 %}
+                  <td>{{ appointment.user.name }}</td>
+                  {% else %}
+                  <td>Guest</td>
+                  {% endif %}
+                  {% if appointment.customer_id > 0 %}
+                  <td>{{ appointment.user.email }}</td>
+                  {% else %}
+                  <td>{{ appointment.email }}</td>
+                  {% endif %}
+                  <td>{{ appointment.service.name }}</td>
+                  <td>{{ appointment.created_at|date('Y-m-d h:i A') }}</td>
+                  <td>{{ appointment.datetime|date('Y-m-d h:i A') }}</td>
+                </tr>
+        		{% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <div class="box-footer">
+          Footer
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}

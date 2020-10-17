@@ -1,0 +1,18 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dashboard
+      </h1>
+      {% if isAdmin() %}
+        {% include 'admin_dashboard.twig' %}
+      {% else %}
+        {% include 'non_admin_dashboard.twig' %}
+      {% endif %}
+    </section>
+  </div>
+
+{% endblock %}
